@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <title>Stephen's Space | PDFLib</title>
+    <meta name=keywords content="SDF, Super Dimension Fortress, Raycast, Applescript, library, utility, resource, package, osax, extension, pdf, file">
+  </head>
+  <body>
+    <header id="general-header">
+      <h1>Stephen's Space</h1>
+    </header>
+
+    <nav id="project-nav">
+      <a href="../../../">Root</a><br />
+      <a href="../">Back to AppleScript Libraries</a>
+    </nav>
+
+    <header id="pdflib-header">
+      <h2>PDFLib</h2>
+    </header>
+
+    <section id="pdflib-introduction">
+      <p>
+        PDFLib provides a high-level interface to the PDFKit framework, allowing for easy PDF manipulation and modification. The library also provides functionalities such as PDF OCR, document enhancement, and more.
+      </p>
+
+      <center>
+        <img src="./PDFLibBasics.png" alt="PDFLib Basics" width=500 />
+      </center>
+    </section>
+
+    <br />
+
+    <section id="pdflib-script-objects">
+      <h3>Script Objects</h3>
+      <article id="pdflib-ilimage-object">
+        <a name="ilimage"><h4>ILImage</h4></a>
+        <p>
+          Wrapper object around NSImage and CoreImage functionality providing easy access to complex operations.
+        </p>
+
+        <div id="pdflib-ilimage-instance-handlers">
+          <h5>Instance Handlers</h5>
+            <p>
+              <b>flip over <i>axis</i></b> - Flips the image vertically or horizontally. <i>axis</i> must be one of <a href="#x_axis">X_AXIS</a>, <a href="#y_axis">Y_AXIS</a>, 0, or 1.
+            </p>
+
+            <p>
+              <b>rotate by <i>degrees</i></b> - Rotates the image clockwise by the specified amount of degrees. <i>degrees</i> must be a real number.
+            </p>
+          
+            <p>
+              <b>extractText()</b> - Extracts text from the image. Returns a list of text strings found in the image.
+            </p>
+
+            <p>
+              <b>classifications above <i>confidenceThreshold</i></b> - Gets a list of possible classifications for objects in the image. <i>confidenceThreshold</i> must be a real number representing the minimum confidence level of each returned classification. Returns the classifications as a list of record objects with <i>identifier</i> (text) and <i>confidence</i> (real) fields.
+            </p>
+
+            <p>
+              <b>extractPayloads()</b> - Gets the payload text of all barcodes, QR codes, etc. in the image. Returns the payloads as a list of <i>text</i> strings.
+            </p>
+
+            <p>
+              <b>countFaces()</b> - Returns the <i>integer</i> number of human faces observed in the image.
+            </p>
+
+            <p>
+              <b>save in <i>filePath</i> as <i>fileType</i></b> - Saves the image at the provided file path using the specified file type. If the image was loaded from a local file, <i>filePath</i> defaults to the original file path. <i>fileType</i> must be one of "png", "jpg", "jpeg", "gif", "bmp", or "tiff", and it defaults to "png". Returns <i>true</i> if the image was saved successfully, <i>false</i> otherwise.
+            </p>
+
+            <p>
+              <b>open</b> - Opens the image, accounting for any modifications. Returns <i>true</i> if the image was opened successfully, <i>false</i> otherwise.
+            </p>
+        </div>
+      </article>
+    </section>
+
+    <br />
+
+    <section id="pdflib-top-level-handlers">
+      <h3>Top-Level Handlers</h3>
+      <p>
+        <b>extractText from <i>theImage</i></b> - Extracts text from an <a href="#ilimage">ILImage</a> object. Returns the list of <i>text</i> strings found in the image.
+      </p>
+
+      <p>
+        <b>|rotation| of <i>theImage</i> by <i>degrees</i></b> - Rotates an <a href="#ilimage">ILImage</a> object clockwise by the specified amount of degrees. <i>degrees</i> must be a real number.
+      </p>
+
+      <p>
+        <b>rotate(<i>theImage</i>, <i>degrees</i>)</b> - Rotates an <a href="#ilimage">ILImage</a> object clockwise by the specified amount of degrees. <i>degrees</i> must be a real number.
+      </p>
+
+      <p>
+        <b>classifications for <i>theImage</i> above <i>confidenceThreshold</i></b> - Gets a list of possible classifications for objects in an <a href="#ilimage">ILImage</a> object. <i>confidenceThreshold</i> must be a real number representing the minimum confidence level of each returned classification. Returns the classifications as a list of record objects with <i>identifier</i> (text) and <i>confidence</i> (real) fields.
+      </p>
+
+      <p>
+        <b>extractPayloads from <i>theImage</i></b> - Gets the payload text of all barcodes, QR codes, etc. in an <a href="#ilimage">ILImage</a> object. Returns the payloads as a list of <i>text</i> strings.
+      </p>
+
+      <p>
+        <b>countFaces for theImage</b> - Returns the <i>integer</i> number of human faces observed in an <a href="#ilimage">ILImage</a> object.
+      </p>
+
+      <p>
+        <b>Symbol(<i>symbolName</i>, <i>pointSize</i>)</b> - Initializes an <a href="#ilimage">ILImage</a> script object from the system symbol with the specified name, sized to the specified point size. <i>symbolName</i> must be a text string, and <i>pointSize</i> must be a number. Returns the newly created <a href="#ilimage">ILImage</a> object.
+      </p>
+
+      <p>
+        <b>createImage from <i>theData</i></b> - Creates an <a href="#ilimage">ILImage</a> object from the provided data. <i>theData</i> can be either an AppleScript or Objective-C data object, or a base 64 encoded string. Returns the newly created <a href="#ilimage">ILImage</a> object.
+      </p>
+
+      <p>
+        <b>imageFromData:<i>theData</i></b> - Creates an <a href="#ilimage">ILImage</a> object from the provided data. <i>theData</i> can be either an AppleScript or Objective-C data object, or a base 64 encoded string. Returns the newly created <a href="#ilimage">ILImage</a> object.
+      </p>
+    </section>
+
+    <br />
+
+    <section id="pdflib-constants">
+      <h3>Constants</h3>
+      <p>
+        <a name="x_axis"><b>X_AXIS</b></a> = 1 - The horizontal axis of an image; the line comprising the bottom edge of the image.
+      </p>
+
+      <p>
+        <a name="y_axis"><b>Y_AXIS</b></a> = 0 - The vertical axis of the image; the line comprising the left edge of the image.
+      </p>
+    </section>
+
+    <br /><br/>
+
+    <footer id="projects-footer">
+      <center>
+      <i>Hosting for this site is provided by</i>
+      <p>
+        <a target=new href=http://sdf.org>
+        <img src=http://sdf.org/sdfbanner.png><br /><br />
+        <b>The SDF Public Access UNIX System</b>
+        </a>
+      </p>
+      </center>
+    </footer>
+  </body>
+</html>
