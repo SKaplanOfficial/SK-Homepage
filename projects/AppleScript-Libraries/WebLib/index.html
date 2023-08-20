@@ -1,0 +1,253 @@
+<html>
+  <head>
+    <title>Stephen's Space | WebLib</title>
+    <meta name=keywords content="SDF, Super Dimension Fortress, Raycast, Applescript, library, utility, resource, package, osax, extension, web, internet, tool">
+  </head>
+  <body>
+    <header id="general-header">
+      <h1>Stephen's Space</h1>
+    </header>
+
+    <nav id="project-nav">
+      <a href="../../../index.html">Root</a><br />
+      <a href="../index.html">Back to AppleScript Libraries</a>
+    </nav>
+
+    <header id="weblib-header">
+      <h2>WebLib</h2>
+    </header>
+
+    <section id="weblib-introduction">
+      <p>
+        Get properties of websites, extract their visible text, save them to PDFs or images, and more.
+      </p>
+
+      <center>
+        <img src="./WebLibBasics.png" alt="WebLib Basics" width=500 />
+      </center>
+    </section>
+
+    <br />
+
+    <section id="weblib-script-objects">
+      <h3>Script Objects</h3>
+      <article id="weblib-wifimanager-object">
+        <a name="wifimanager"><h4>WiFiManager</h4></a>
+        <p>
+          Wrapper object around CoreWLAN functionality providing easy access to complex operations.
+        </p>
+
+        <div id="weblib-wifimanager-instance-handlers">
+          <h5>Instance Handlers</h5>
+          <p>
+            <b>disconnect()</b> - Disconnects from the current WiFi network.
+          </p>
+          
+          <p>
+            <b>disable()</b> - Disables the WiFi interface.
+          </p>
+
+          <p>
+            <b>enable()</b> - Enables the WiFi interface.
+          </p>
+
+          <p>
+            <b>getMACAddress()</b> - Gets the MAC address of the WiFi interface. Returns a <i>text</i> string.
+          </p>
+
+          <p>
+            <b>getRSSI()</b> - Gets the current aggregate RSSI measurement for the WiFi interface.
+          </p>
+
+          <p>
+            <b>getSSID()</b> - Gets the SSID of the current WiFi network.
+          </p>
+
+          <p>
+            <b>connectToNetwork:<i>networkName</i> usingPassword:<i>thePassword</i></b> - Attempts to connect to the network with the given name, using the provided password. Both parameters must be <i>text</i> strings. Returns <i>true</i> if the connection was successful, <i>false</i> otherwise.
+          </p>
+
+          <p>
+            <b>getAvailableNetworks()</b> - Scans for available WiFi networks and returns the list of network SSIDs.
+          </p>
+        </div>
+      </article>
+
+      <br />
+
+      <article id="weblib-wlwebsite-object">
+        <a name="wlwebsite"><h4>WLWebsite</h4></a>
+        <p>
+          Wrapper object around website URLs and data providing access to complex operations.
+        </p>
+
+        <div id="weblib-wlwebsite-instance-handlers">
+          <h5>Instance Handlers</h5>
+          <p>
+            <b>ping over <i>numAttempts</i></b> - Pings the site's host the speciifed number of times, returning the average. <i>numAttempts</i> must be an <i>integer</i> number, and it defaults to 1. Returns the average ping time in milliseconds as a <i>number</i>.
+          </p>
+          
+          <p>
+            <b>save in <i>filePath</i> as <i>fileType</i></b> - Saves the website as a text file, HTML file, PDF, PNG, or JPG. <i>filePath</i> must be a valid path as a <i>text</i> string, and <i>fileType</i> must be one of <a href="#PNG">PNG</a>, <a href="#JPG">JPG</a>, <a href="#HTML">HTML</a>, <a href="#PDF">PDF</a>, or <a href="#TXT">TXT</a>. Returns <i>true</i> if the website was saved successfully, <i>false</i> otherwise.
+          </p>
+
+          <p>
+            <b>open</b> - Opens the website in the default browser.
+          </p>
+        </div>
+
+        <div id="weblib-wlwebsite-instance-properties">
+          <h5>Instance Properties</h5>
+          <p>
+            <b>title</b> - The title of the website.
+          </p>
+          
+          <p>
+            <b>description</b> - A brief description of the website's content.
+          </p>
+
+          <p>
+            <b>URL</b> - The URL of the website as a <i>text</i> string.
+          </p>
+
+          <p>
+            <b>HTML</b> - The raw HTML of the website as a <i>text</i> string.
+          </p>
+
+          <p>
+            <b>visibleText</b> - The visible text of the website as a <i>text</i> string.
+          </p>
+
+          <p>
+            <b>favicon</b> - The favicon of the website as an <i>NSImage</i> object.
+          </p>
+
+          <p>
+            <b>host</b> - The host (i.e. base domain) of the website as a <i>text</i> string.
+          </p>
+
+          <p>
+            <b>scheme</b> - The URL scheme of the URL as a <i>text</i> string.
+          </p>
+
+          <p>
+            <b>pathString</b> - The path component of the URL as a <i>text</i> string.
+          </p>
+
+          <p>
+            <b>query</b> - The query component of the URL as a <i>text</i> string.
+          </p>
+
+          <p>
+            <b>queryItems</b> - The query component of the URL as a record of <i>text</i> strings.
+          </p>
+
+          <p>
+            <b>port</b> - The port component of the URL as a <i>number</i>.
+          </p>
+        </div>
+      </article>
+
+      <br />
+
+      <article id="weblib-wlwebscraper-object">
+        <a name="wlwebscraper"><h4>WLWebScraper</h4></a>
+        <p>
+          Class for scraping the contents of a website.
+        </p>
+
+        <div id="weblib-wlwebscraper-instance-handlers">
+          <h5>Instance Handlers</h5>
+          <p>
+            <b>itemsWithTypes:<i>theTypes</i> forKeyPath:<i>theKeyPath</i></b> - Extracts items of the specified type from
+          </p>
+
+          <p>
+            <b>extractLinks()</b> - Extracts all links from the website. Returns a list of <i>text</i> strings.
+          </p>
+
+          <p>
+            <b>extractPhoneNumbers()</b> - Extracts all phone numbers from the website. Returns a list of <i>text</i> strings.
+          </p>
+
+          <p>
+            <b>extractTransitInfo()</b> - Extracts all transit information from the website. Returns a list of <i>text</i> strings.
+          </p>
+
+          <p>
+            <b>extractDates()</b> - Extracts all dates from the website. Returns a list of <i>text</i> strings.
+          </p>
+
+          <p>
+            <b>extractAddresses()</b> - Extracts all addresses from the website. Returns a list of <i>text</i> strings.
+          </p>
+        </div>
+
+        <div id="weblib-wlwebscraper-instance-properties">
+          <h5>Instance Properties</h5>
+          <p>
+            <b>target</b> - The target URL of the website as a <i>text</i> string.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <br />
+
+    <section id="weblib-top-level-handlers">
+      <h3>Top-Level Handlers</h3>
+      <p>
+        <b>websiteWithURLString:<i>URLString</i></b> - Creates a new <a href="#wlwebsite">WLWebsite</a> object for a given URL. <i>URLString</i> must be a <i>text</i> string. Returns the newly created <a href="#wlwebsite">WLWebsite</a> object.
+      </p>
+
+      <p>
+        <b>WebSite for <i>URLString</i></b> - Creates a new <a href="#wlwebsite">WLWebsite</a> object for a given URL. <i>URLString</i> must be a <i>text</i> string. Returns the newly created <a href="#wlwebsite">WLWebsite</a> object.
+      </p>
+
+      <p>
+        <b>ping for <i>site</i> over <i>numAttempts</i></b> - Pings the site's host the speciifed number of times, returning the average ping time in milliseconds. <i>site</i> must be a <a href="#wlwebsite">WLWebsite</a> object or a <i>text</i> string, and <i>numAttempts</i> must be an <i>integer</i> number. Returns the average ping time in milliseconds as a <i>number</i>.
+      </p>
+
+      <p>
+        <b>webScraperForURLWithString:<i>URLString</i></b> - Creates a new web scraper for a given URL. <i>URLString</i> must be a <i>text</i> string. Returns the newly created <a href="#wlwebscraper">WLWebScraper</a> object.
+      </p>
+
+      <p>
+        <b>WebScraper for <i>theWebsite</i></b> - Creates a new web scraper for a given website. <i>theWebsite</i> must be an <a href="#wlwebsite">WLWebsite</a> object. Returns the newly created <a href="#wlwebscraper">WLWebScraper</a> object.
+      </p>
+
+      <p>
+        <b>percentEncoding for <i>theString</i></b> - Encodes the provided string for use in a URL. Returns the encoded string as a <i>text</i> string.
+      </p>
+
+      <p>
+        <b>percentDecoding for <i>theString</i></b> - Decodes the provided string from a URL. Returns the decoded string as a <i>text</i> string.
+      </p>
+    </section>
+
+    <br />
+
+    <section id="weblib-constants">
+      <h3>Constants</h3>
+      <p><a name="PNG"><b>PNG</b></a> = "PNG" - The PNG file type.</p>
+      <p><a name="JPG"><b>JPG</b></a> = "JPG" - The JPG file type.</p>
+      <p><a name="HTML"><b>HTML</b></a> = "HTML" - The HTML file type.</p>
+      <p><a name="PDF"><b>PDF</b></a> = "PDF" - The PDF file type.</p>
+      <p><a name="TXT"><b>TXT</b></a> = "TXT" - The TXT file type.</p>
+    </section>
+
+    <br /><br/>
+
+    <footer id="projects-footer">
+      <center>
+      <i>Hosting for this site is provided by</i>
+      <p>
+        <a target=new href=http://sdf.org>
+        <img src=http://sdf.org/sdfbanner.png><br /><br />
+        <b>The SDF Public Access UNIX System</b>
+        </a>
+      </p>
+      </center>
+    </footer>
+  </body>
+</html>

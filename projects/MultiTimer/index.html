@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title>Stephen's Space | MultiTimer</title>
+    <meta name=keywords content="SDF, Super Dimension Fortress, Raycast, Applescript, library, utility, resources, info, help, guide, notes, books, applescript, programming, python, unix, mac, apple, technology">
+  </head>
+  <body>
+    <header id="general-header">
+      <h1>Stephen's Space</h1>
+    </header>
+
+    <nav id="project-nav">
+      <a href="../../index.html">Root</a><br />
+      <a href="../../blog/index.html">Blog</a><br />
+      <a href="../../stephen-kaplan-resume_2023-aug.pdf">Resume</a><br />
+      <a href="../../projects/index.html">Projects</a><br />
+      <a href="../../links.html">Links</a>
+    </nav>
+    <br />
+    <header id="project-header">
+      <img src="./assets/multitimer-logo.png" alt="MultiTimer logo" width=250 />
+    </header>
+
+    <section id="project-introduction">
+      <h3>Introduction</h3>
+      <p>
+        A macOS menubar app for running multiple timers simultaneously. Created in Python with <a href="../PyXA/index.html">PyXA</a>.
+      </p>
+      
+      <a href="https://github.com/SKaplanOfficial/MultiTimer">GitHub Repository</a> | <a href="https://www.paypal.com/donate/?hosted_button_id=2XFX5UXXR8M6J">Support Development</a>
+    </section>
+
+    <section id="project-installation">
+      <h3>Installation</h3>
+      <p>
+        Download <i>MultiTimer.zip</i> from the <a href="https://github.com/helloimsteven/multitimer/releases">releases page</a>, unzip it, and move the application bundle to the Applications Folder. Since the app is unsigned, you will need to right-click the application bundle and select "Open" to run the app for the first time.
+      </p>
+    </section>
+
+    <section id="project-usage">
+      <h3>Usage</h3>
+      <div id="project-run-with-python">
+        <h4>Run via Pythong</h4>
+        <p>To run MultiTimer via Python, use Python 3.10 or higher and install the required packages via <i>pip</i>:<br /><code>$ pip install mac-pyxa py2app</code></p>
+        <p>Then simply run the Python script as you normally would:<br /><code>$ python MultiTimer.py</code></p>
+      </div>
+
+      <div id="project-build">
+        <h4>Build into Standalone App</h4>
+        <p>
+          To build an application bundle for macOS, use <a href="https://github.com/ronaldoussoren/py2app">py2app</a>. A <i>setup.py</i> file is provided, but you may wish to customize it.
+        </p>
+        <p>To install <i>py2app</i>:<br /><code>$ python setup.py py2app -A</code></p>
+        <p>To bundle the app:<br /><code>$ python setup.py py2app</code></p>
+      </div>
+    </section>
+
+    <section id="project-images">
+      <h3>Images</h3>
+      <p>The menubar dropdown:</p>
+      <img src="./assets/MultiTimer.png" alt="The MultiTimer menubar dropdown with 3 active timers running" width=500 />
+
+      <p>When a timer completes:</p>
+      <img src="./assets/TimerComplete.png" alt="The alert that appears when a timer completes" width=500 />
+    </section>
+
+    <section id="project-contact">
+      <h3>Contact</h3>
+      <p>
+        If you have any questions about macimg that are not addressed in the documentation, or if you just want to talk, feel free to email <a href="mailto:stephen.kaplan@maine.edu">stephen.kaplan@maine.edu</a>.
+      </p>
+    </section>
+  
+    <br /><br/>
+
+    <footer id="general-footer">
+      <center>
+      <i>Hosting for this site is provided by</i>
+      <p>
+        <a target=new href=http://sdf.org>
+        <img src=http://sdf.org/sdfbanner.png><br /><br />
+        <b>The SDF Public Access UNIX System</b>
+        </a>
+      </p>
+      </center>
+    </footer>
+  </body>
+</html>

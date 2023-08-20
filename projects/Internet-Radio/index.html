@@ -1,0 +1,146 @@
+<html>
+  <head>
+    <title>Stephen's Space | Internet Radio</title>
+    <meta name=keywords content="SDF, Super Dimension Fortress, Raycast, Applescript, library, utility, resources, info, help, guide, notes, books, applescript, programming, python, unix, mac, apple, technology">
+  </head>
+  <body>
+    <header id="general-header">
+      <h1>Stephen's Space</h1>
+    </header>
+
+    <nav id="project-nav">
+      <a href="../../index.html">Root</a><br />
+      <a href="../../blog/index.html">Blog</a><br />
+      <a href="../../stephen-kaplan-resume_2023-aug.pdf">Resume</a><br />
+      <a href="../../projects/index.html">Projects</a><br />
+      <a href="../../links.html">Links</a>
+    </nav>
+    <br />
+    <header id="project-header">
+      <h2>Internet Radio</h2>
+    </header>
+
+    <section id="project-introduction">
+      <h3>Introduction</h3>
+      <p>
+        A Raycast extension for on-the-fly image adjustments, filtering, and conversion. Play live internet radio through Music, QuickTime Player, VLC, or Vox. The 36 default stations cover a wide variety of genres, including live news, and you can add custom stations by providing a directly link to the stream URL (e.g. a live broadcast mp3, ogg, acc, pls, or other audio file). You can also view the current station and control playback via a menu bar extra.
+      </p>
+
+      <p>
+        Note: When adding URLs, they must be URLs that Music.app can play. For a lot of streams, including many on TuneIn, you can find a direct url to an audio file by observing the network tab in your browser’s inspector.
+      </p>
+      
+      <a href="https://www.raycast.com/HelloImSteven/internet-radio">Download Now</a> | <a href="https://www.paypal.com/donate/?hosted_button_id=2XFX5UXXR8M6J">Support Development</a>
+    </section>
+
+    <section id="project-commands">
+      <h3>Commands</h3>
+      <table border="1" cellpadding="5">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Search Stations</td>
+            <td>Search a database of 1500+ radio stations, optionally playing them or saving them for later.</td>
+          </tr>
+          <tr>
+            <td>Browse Saved Stations</td>
+            <td>Browse the list of saved stations, and edit or delete stations, and control playback.</td>
+          </tr>
+          <tr>
+            <td>New Station</td>
+            <td>Add a custom station via a simple form.</td>
+          </tr>
+          <tr>
+            <td>Stop Playback</td>
+            <td>Stops the currently playing station and removes the associated stream file from Music.app.</td>
+          </tr>
+          <tr>
+            <td>Play Last Station</td>
+            <td>Resumes playback of the last played station.</td>
+          </tr>
+          <tr>
+            <td>Toggle Play/Pause</td>
+            <td>Toggle playback of the current station.</td>
+          </tr>
+          <tr>
+            <td>Play Random Station</td>
+            <td>Plays a random live radio station.</td>
+          </tr>
+          <tr>
+            <td>Menu Bar Radio</td>
+            <td>View current station and control playback from the menu bar.</td>
+          </tr>
+          <tr>
+            <td>Current Station</td>
+            <td>Shows the currently playing station.</td>
+          </tr>
+          <tr>
+            <td>Export Saved Stations</td>
+            <td>Export all of your saved stations to a JSON file.</td>
+          </tr>
+          <tr>
+            <td>Import Station Data</td>
+            <td>Restore stations into your saved stations list from a JSON file.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="project-details">
+      <h3>Details</h3>
+      <p>
+        Internet Radio comes pre-configured with 25 saved stations spanning a variety of genres. You can immediately start listening to any of those stations, or you can start looking to add others. Feel free to delete some or all of the defaults!
+      </p>
+      <p>
+        To add new stations, you can either use the built-in <i>Search Stations</i> command to search a dataset of known radio stations, or you can manually input a station using the <i>New Station</i> command.
+      </p>
+      <p>
+        With the <i>Search Stations</i> command, you can find stations from all over the globe streaming almost any genre. The dataset that the extension pulls from can be found <a href="https://github.com/SKaplanOfficial/internet-radio/blob/main/radio-stations.json">here</a>. If you have a station not listed there, please considering adding it!
+      </p>
+      <p>
+        For the <i>New Station</i> command, you will need to provide a direct stream link playable by Music.app. For a lot of streams, including many on TuneIn, you can find a direct url to an audio file by observing the network tab in your browser’s inspector. Often, such URLs will be extension-less, e.g. "<a href="http://uk1.internet-radio.com:8355/stream">http://uk1.internet-radio.com:8355/stream</a>", or to an MP3 or AAC file (but there are exceptions). <em>At the moment, Internet Radio does not support HLS formats (i.e. m3u8)</em>.
+      </p>
+      <p>
+        For help finding internet radio stations and their stream URLs, take a look at my <a href="https://github.com/SKaplanOfficial/internet-radio/blob/main/README.md">List of Internet Radio Station Directory Sites</a>.
+      </p>
+    </section>
+
+    <section id="project-station-sets">
+      <h3>Exported Station Sets</h3>
+      <p>
+        You can use the import and export capabilities of the extension to share sets of radio stations, or to quickly load many stations that you're interested in. Here are some station sets to get you started:
+      </p>
+      <ul>
+        <li><a href="https://gist.github.com/SKaplanOfficial/ff7b8dd2c877f8aaee2e3e3c8d49a0f9">Classical Music Stations</a></li>
+        <li><a href="https://gist.github.com/SKaplanOfficial/40b689444fe2362902ed220a76f9066b">Hawaiian Music Stations</a></li>
+        <li><a href="https://raw.githubusercontent.com/SKaplanOfficial/internet-radio/main/station-sets/genre-soundtracks.json">Movie Soundtrack Stations</a></li>
+      </ul>
+    </section>
+
+    <section id="project-contact">
+      <h3>Contact</h3>
+      <p>
+        If you have any questions about Internet Radio that are not addressed in the documentation, or if you just want to talk, feel free to email <a href="mailto:stephen.kaplan@maine.edu">stephen.kaplan@maine.edu</a>.
+      </p>
+    </section>
+  
+    <br /><br/>
+
+    <footer id="general-footer">
+      <center>
+      <i>Hosting for this site is provided by</i>
+      <p>
+        <a target=new href=http://sdf.org>
+        <img src=http://sdf.org/sdfbanner.png><br /><br />
+        <b>The SDF Public Access UNIX System</b>
+        </a>
+      </p>
+      </center>
+    </footer>
+  </body>
+</html>

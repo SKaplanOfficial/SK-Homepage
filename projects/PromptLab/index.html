@@ -1,0 +1,524 @@
+<html>
+  <head>
+    <title>Stephen's Space | PromptLab</title>
+    <meta name=keywords content="SDF, Super Dimension Fortress, Raycast, LLM, prompt, artificial intelligence, machine learning, ai, ml, experiment, lab">
+  </head>
+  <body>
+    <header id="general-header">
+      <h1>Stephen's Space</h1>
+    </header>
+
+    <nav id="project-nav">
+      <a href="../../index.html">Root</a><br />
+      <a href="../../blog/index.html">Blog</a><br />
+      <a href="../../stephen-kaplan-resume_2023-aug.pdf">Resume</a><br />
+      <a href="../../projects/index.html">Projects</a><br />
+      <a href="../../links.html">Links</a>
+    </nav>
+    <br />
+    <header id="project-header">
+      <img src="./assets/promptlab-logo.png" alt="PromptLab Logo" width=300 />
+    </header>
+
+    <section id="project-introduction">
+      <h3>Introduction</h3>
+      <p>
+        PromptLab is a Raycast extension for creating and sharing powerful, contextually-aware AI commands using placeholders, action scripts, and more.
+      </p>
+
+      <p>
+        PromptLab allows you to create custom AI commands with prompts that utilize contextual placeholders such as <code>{{selectedText}}</code>, <code>{{todayEvents}}</code>, or <code>{{currentApplication}}</code> to vastly expand the capabilities of Raycast AI. PromptLab can also extract information from selected files, if you choose, so that it can tell you about the subjects in an image, summarize a PDF, and more.
+      </p>
+
+      <p>
+        PromptLab also supports "action scripts" -- AppleScripts which run with the AI's response as input, as well as experimental autonomous agent features that allow the AI to run commands on your behalf. These capabilities, paired with PromptLab's extensive customization options, open a whole new world of possibilities for enhancing your workflows with AI.
+      </p>
+
+      <a href="https://www.raycast.com/HelloImSteven/promptlab">Install PromptLab</a> | <a href="https://www.raycast.com/HelloImSteven">My Other Extensions</a> | <a href="https://www.paypal.com/donate/?hosted_button_id=2XFX5UXXR8M6J">Donate</a>
+    </section>
+
+    <section id="project-table-of-contents">
+      <h3>Table Of Contents</h3>
+      <ul>
+        <li><a href="#project-feature-overview">Feature Overview</a></li>
+        <li><a href="#project-top-level-commands">Top-Level Commands</a></li>
+        <li><a href="#project-images">Images</a></li>
+        <li>
+          <a href="#project-custom-commands">Create Your Own Commands</a>
+          <ul>
+            <li><a href="#project-placeholders">Placeholders</a></li>
+            <li>
+              <a href="#project-action-scripts">Action Scripts</a>
+              <ul>
+              <li><a href="#project-provided-variables">Provided Variables</a></li>
+              <li><a href="#project-provided-handlers">Provided Handlers</a></li>
+              </ul>
+            </li>
+            <li><a href="#project-custom-config">Custom Configuration Fields</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#project-chats">Chats</a>
+          <ul>
+            <li><a href="#project-autonomous-agent-features">Autonomous Agent Features</a></li>
+          </ul>
+        </li>
+        <li><a href="#project-installation">Installation</a></li>
+        <li><a href="#project-custom-models">Custom Model Endpoints</a></li>
+        <li><a href="#project-troubleshooting">Troubleshooting</a></li>
+        <li><a href="#project-contributing">Contributing</a></li>
+        <li><a href="https://github.com/SKaplanOfficial/Raycast-PromptLab/blob/main/PRIVACY.md">Privacy Policy</a></li>
+        <li><a href="#project-resources">Useful Resources</a></li>
+      </ul>
+    </section>
+
+    <section id="project-feature-overview">
+      <h3>Feature Overview</h3>
+      <ul>
+        <li>Create, Edit, Run, and Share Custom Commands</li>
+        <li>Detail, List, Chat, and No-View Command Types</li>
+        <li>Utilize Numerous Contextual Placeholders in Prompts</li>
+        <li>Use AppleScript, JXA, Shell Scripts, and JavaScript Placeholders</li>
+        <li>Obtain Data from External APIs, Websites, and Applications</li>
+        <li>Analyze Content of Selected Files</li>
+        <li>Extract Text, Subjects, QR Codes, etc. from Images and Videos</li>
+        <li>Quick Access to Commands via Menu Bar Item</li>
+        <li>Import/Export Commands</li>
+        <li>Save & Run Commands as Quicklinks with Optional Input Parameter</li>
+        <li>Run AppleScript or Bash Scripts Upon Model Response</li>
+        <li>Execute Siri Shortcuts and Use Their Output in Prompts</li>
+        <li>PromptLab Chat with Autonomous Command Execution Capability</li>
+        <li>Multiple Chats, Chat History, and Chat Statistics</li>
+        <li>Chat-Specific Context Data Files</li>
+        <li>Upload & Download Commands To/From PromptLab Command Store</li>
+        <li>Use Custom Model Endpoints with Synchronous or Asynchronous Responses</li>
+        <li>Favorite Commands, Chats, and Models</li>
+        <li>Optionally Speak Responses and Provide Spoken Input</li>
+        <li>Create Custom Placeholders with JSON</li>
+      </ul>
+    </section>
+
+    <section id="project-top-level-commands">
+      <h3>Top-Level Commands</h3>
+      <table border="1" cellpadding="5">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>New PromptLab Command</td>
+            <td>Create a custom PromptLab command accessible via <i>My PromptLab Commands</i></td>
+          </tr>
+          <tr>
+            <td>My PromptLab Commands</td>
+            <td>Search and run custom PromptLab commands that you've installed or created</td>
+          </tr>
+          <tr>
+            <td>Manage Models</td>
+            <td>View, edit, add, and delete custom models</td>
+          </tr>
+          <tr>
+            <td>PromptLab Command Store</td>
+            <td>Explore and search commands uploaded to the store by other PromptLab users</td>
+          </tr>
+          <tr>
+            <td>PromptLab Chat</td>
+            <td>Start a back-and-forth conversation with AI with selected files provided as context</td>
+          </tr>
+          <tr>
+            <td>PromptLab Menu Item</td>
+            <td>Display a menu of PromptLab commands in your menu bar</td>
+          </tr>
+          <tr>
+            <td>Import PromptLab Commands</td>
+            <td>Add custom commands from a JSON string</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="project-images">
+      <h3>Image</h3>
+      <img src="./assets/PromptLab-1.0.0.png" alt="PromptLab 1.0.0 Release Features" width=800 />
+      <img src="./assets/PromptLab-1.1.0.png" alt="PromptLab 1.1.0 Release Features" width=800 />
+
+      <video width="800" controls>
+        <source src="./assets/dog-svg-summary.webm" type="video/webm">
+        <p>Sample output of running the <i>Summarize Selected Files</i> command on an SVG of a pink dog.</p>
+      </video>
+
+      <video width="800" controls>
+        <source src="./assets/edit-command.webm" type="video/webm">
+        <p>Demonstration of editing a command in PromptLab.</p>
+      </video>
+
+      <video width="800" controls>
+        <source src="./assets/install-all.webm" type="video/webm">
+        <p>Demonstration of installing all commands at once from the PromptLab Command Store.</p>
+      </video>
+
+      <video width="800" controls>
+        <source src="./assets/cpu-performance.webm" type="video/webm">
+        <p>Sample output from the <i>Performance Summary</i> command.</p>
+      </video>
+
+      <p>
+        View more images in the <a href="./gallery.html">gallery</a>.
+      </p>
+    </section>
+
+    <section id="project-custom-commands">
+      <h3>Create Your Own Commands</h3>
+      <p>
+        You can create custom PromptLab commands, accessed via the "My PromptLab Commands" command, to execute your own prompts acting on the contents of selected files. A variety of useful defaults are provided, and you can find more in the PromptLab Command Store.
+      </p>
+
+      <div id="project-placeholders">
+        <h4>Placeholders</h4>
+        <p>
+          When creating custom commands, you can use placeholders in your prompts that will be substituted with relevant information whenever you run the command. These placeholders range from simple information, like the current date, to complex data retrieval operations such as getting the content of the most recent email or running a sequence of prompts in rapid succession and amalgamating the results. Placeholders are a powerful way to add context to your PromptLab prompts.
+        </p>
+
+        <p>
+          A few examples of placeholders are:
+        </p>
+
+        <table border="1" cellpadding="5">
+          <thead>
+            <th>Placeholder</th>
+            <th>Replaced With</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>{{clipboardText}}</code></td>
+              <td>The text content of your clipboard</td>
+            </tr>
+            <tr>
+              <td><code>{{selectedFiles}}</code></td>
+              <td>The paths of the files you have selected</td>
+            </tr>
+            <tr>
+              <td><code>{{imageText}}</code></td>
+              <td>Text extracted from the image(s) you have selected</td>
+            </tr>
+            <tr>
+              <td><code>{{lastNote}}</code></td>
+              <td>The HTML of the most recently modified note in the Notes app</td>
+            </tr>
+
+            <tr>
+              <td><code>{{date format="d MMMM, yyyy"}}</code></td>
+              <td>The current date, optionally specifying a format</td>
+            </tr>
+            <tr>
+              <td><code>{{todayEvents}}</code></td>
+              <td>The events scheduled for today, including their start and end times</td>
+            </tr>
+            <tr>
+              <td><code>{{youtube:[search term]}}</code></td>
+              <td>The transcription of the first YouTube video result for the specified search term</td>
+            </tr>
+            <tr>
+              <td><code>{{url:[url]}}</code></td>
+              <td>The visible text at the specified URL</td>
+            </tr>
+            <tr>
+              <td><code>{{as:...}}</code></td>
+              <td>The result of the specified AppleScript code</td>
+            </tr>
+            <tr>
+              <td><code>{{js:...}}</code></td>
+              <td>The result of the specified JavaScript code</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          These are just a few of the many placeholders available. <a href="https://github.com/SKaplanOfficial/Raycast-PromptLab/blob/main/assets/placeholders_guide.md">View the full list here</a>. You even create your own placeholders using JSON, if you want!
+        </p>
+      </div>
+
+      <div id="project-action-scripts">
+        <h4>Action Scripts</h4>
+        <p>
+          When configuring a PromptLab command, you can provide AppleScript code to execute once the AI finishes its response. You can access the response text via the <code>response</code> variable in AppleScript. Several convenient handlers for working with the response text are also provided, as listed below. Action Scripts can be used to build complex workflows using AI as a content provider, navigator, or decision-maker.
+        </p>
+
+        <div id="project-provided-variables">
+          <h5>Provided Variables</h5>
+          <table border="1" cellpadding="5">
+            <thead>
+              <th>Variable</th>
+              <th>Value</th>
+              <th>Type</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>input</code></td>
+                <td>The selected files or text input provided to the command.</td>
+                <td>String</td>
+              </tr>
+              <tr>
+                <td><code>prompt</code></td>
+                <td>The prompt component of the command that was run.</td>
+                <td>String</td>
+              </tr>
+              <tr>
+                <td><code>response</code></td>
+                <td>The full response received from the AI.</td>
+                <td>String</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="project-provided-handlers">
+          <h5>Provided Handlers</h5>
+          <table border="1" cellpadding="5">
+            <thead>
+              <th>Handler</th>
+              <th>Purpose</th>
+              <th>Returns</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>split(theText, theDelimiter)</code></td>
+                <td>Splits text around the specified delimiter.</td>
+                <td>List of String</td>
+              </tr>
+              <tr>
+                <td><code>trim(theText)</code></td>
+                <td>Removes leading and trailing spaces from text.</td>
+                <td>String</td>
+              </tr>
+              <tr>
+                <td><code>replaceAll(theText, textToReplace, theReplacement)</code></td>
+                <td>Replaces all occurrences of a string within the given text.</td>
+                <td>String</td>
+              </tr>
+              <tr>
+                <td><code>rselect(theArray, numItems)</code></td>
+                <td>Randomly selects the specified number of items from a list.</td>
+                <td>List</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="project-custom-config">
+        <h4>Custom Configuration Fields</h4>
+        <p>
+          When creating a command, you can use the <i>Unlock Setup Fields</i> action to enable custom configuration fields that must be set before the command can be run. You'll then be able to use actions to add text fields, boolean (true/false) fields, and/or number fields, providing instructions as you see fit. In your prompt, use the <code>{{config:fieldName}}</code> placeholder, camel-cased, to insert the field's current value. When you share the command to the store and others install it, they'll be prompted to fill out the custom fields before they can run the command. This is a great way to make your commands more flexible and reusable.
+        </p>
+      </div>
+    </section>
+
+    <section id="project-contributing">
+      <h3>Contributing</h3>
+      <p>
+        Contributions are welcome, big or small. Please refer to the <a href="https://github.com/SKaplanOfficial/PyXA/blob/main/CONTRIBUTING.md">Contributing Guidelines</a> for any contributions larger than a spelling correction. For small fixes such as spelling corrections, no issue needs to be created; you can go right to making a pull request. Other small issues include general grammar fixes, short comment additions, and formatting (whitespace) changes.
+      </p>
+    </section>
+
+    <section id="project-chats">
+      <p>
+        Using the "PromptLab Chat" command, you can chat with AI while making use of features like placeholders and selected file contents. Chat are preserved for later reference or continuation, and you can customize each chat's name, icon, color, and other settings. Chats can have "Context Data" associated with them, ensuring that the LLM stays aware of the files, websites, and other information relevant to your conversation. Within a chat's settings, you can view various statistics highlighting how you've interacted with the AI, and you can export the chat's contents (including the statistics) to JSON for portability.
+      </p>
+
+      <div id="project-atonomous-agent-features">
+        <h4>Autonomous Agent Features</h4>
+        <p>
+          When using PromptLab Chat, or any command that uses a chat view, you can choose to enable autonomous agent features by checking the "Allow AI To Run Commands" checkbox. This will allow the AI to run PromptLab commands on your behalf, supplying input as needed, in order to answer your queries. For example, if you ask the AI "What's the latest news?", it might run the "Recent Headlines From 68k News" command to fulfil your request, then return the results to you. This feature is disabled by default, and can be enabled or disabled at any time.
+        </p>
+      </div>
+    </section>
+
+    <section id="project-installation">
+      <h3>Installation</h3>
+      <p>
+        PromptLab is now available on the Raycast extensions store! <a href="https://www.raycast.com/HelloImSteven/promptlab">Download it now</a>.
+      </p>
+
+      <p>
+        Alternatively, you can install the extension manually from this repository by following the instructions below.
+      </p>
+
+      <div id="project-manual-installation">
+        <h4>Manual Installation</h4>
+        <code>
+          <pre>
+git clone https://github.com/SKaplanOfficial/Raycast-PromptLab.git && cd Raycast-PromptLab
+
+npm install && npm run dev
+          </pre>
+        </code>
+      </div>
+    </section>
+
+    <section id="project-custom-models">
+      <h3>Custom Model Endpoints</h3>
+      <p>
+        When you first run PromptLab, you'll have the option to configure a custom model API endpoint. If you have access to Raycast AI, you can just leave everything as-is, unless you have a particular need for a different model. You can, of course, adjust the configuration via the Raycast preferences at any time.
+      </p>
+
+      <p>
+        To use any arbitrary endpoint, put the endpoint URL in the <i>Model Endpoint</i> preference field and provide your <i>API Key</i> alongside the corresponding <i>Authorization Type</i>. Then, specify the Input Schema in JSON notation, using <code>{prompt}</code> to indicate where PromptLab should input its prompt. Alternatively, you can specify <code>{basePrompt}</code> and <code>{input}</code> separately, for example if you want to provide content for the user and system roles separately when using the OpenAI API. Next, specify the <i>Output Key</i> of the output text within the returned JSON object. If the model endpoint returns a string, rather than a JSON object, leave this field empty. Finally, specify the <i>Output Timing</i> of the model endpoint. If the model endpoint returns the output immediately, select <i>Synchronous</i>. If the model endpoint returns the output asynchronously, select <i>Asynchronous</i>.
+      </p>
+
+      <div id="project-anthopic-api-example">
+        <h4>Anthropic API Example</h4>
+        <p>
+          To use Anthropic's Claude API as the model endpoint, configure the extension as follows:
+        </p>
+
+        <table border="1" cellpadding="5">
+          <thead>
+            <th>Preference Name</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Model Endpoint</td>
+              <td><a href="https://api.anthropic.com/v1/complete">https://api.anthropic.com/v1/complete</a></td>
+            </tr>
+            <tr>
+              <td>API Authorization Type</td>
+              <td>X-API-Key</td>
+            </tr>
+            <tr>
+              <td>API Key</td>
+              <td>Your API key</td>
+            </tr>
+            <tr>
+              <td>Input Schema</td>
+              <td><code>{ "prompt": "\n\nHuman: {prompt}\n\nAssistant: ", "model": "claude-instant-v1-100k", "max_tokens_to_sample": 300, "stop_sequences": ["\n\nHuman:"] , "stream": true }</code></td>
+            </tr>
+            <tr>
+              <td>Output Key Path</td>
+              <td><code>completion</code></td>
+            </tr>
+            <tr>
+              <td>Output Timing</td>
+              <td>Asynchronous</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="project-openai-api-example">
+        <h4>OpenAI API Example</h4>
+        <p>
+          To use the OpenAI API as the model endpoint, configure the extension as follows:
+        </p>
+
+        <table border="1" cellpadding="5">
+          <thead>
+            <th>Preference Name</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Model Endpoint</td>
+              <td><a href="https://api.openai.com/v1/chat/completions">https://api.openai.com/v1/chat/completions</a></td>
+            </tr>
+            <tr>
+              <td>API Authorization Type</td>
+              <td>Bearer Token</td>
+            </tr>
+            <tr>
+              <td>API Key</td>
+              <td>Your API key</td>
+            </tr>
+            <tr>
+              <td>Input Schema</td>
+              <td><code>{ "model": "gpt-4", "messages": [{"role": "user", "content": "{prompt}"}], "stream": true }</code></td>
+            </tr>
+            <tr>
+              <td>Output Key Path</td>
+              <td><code>choices[0].delta.content</code></td>
+            </tr>
+            <tr>
+              <td>Output Timing</td>
+              <td>Asynchronous</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="project-troubleshooting">
+      <h3>Troubleshooting</h3>
+      <p>
+        If you encounter any issues with the extension, you can try the following steps to resolve them:
+      </p>
+      <ol>
+        <li>Make sure you're running the latest version of Raycast and PromptLab. I'm always working to improve the extension, so it's possible that your issue has already been fixed.</li>
+        <li>If you're having trouble with a command not outputting the desired response, try adjusting the command's configuration. You might just need to make small adjustments to the wording of the prompt. See the <a href="#project-resources">Useful Resources</a> section below for help with prompt engineering. You can also try adjusting the included information settings to add or remove context from the prompt and guide the AI towards the desired response.</li>
+        <li>If you're having trouble with PromptLab Chat responding in unexpected ways, make sure the chat settings are configured correctly. If you are trying to reference selected files, you need to enable "Use Selected Files As Context". Likewise, to run other PromptLab commands automatically, you need to enable "Allow AI To Run Commands". To have the AI remember information about your conversation, you'll need to enable "Use Conversation As Context". Having multiple of these settings enabled can sometimes cause unexpected behavior, so try disabling them one at a time to see if that resolves the issue.</li>
+        <li>Check the <a href="https://github.com/SKaplanOfficial/Raycast-PromptLab/wiki">PromptLab Wiki</a> to see if a solution to your problem is provided there.</li>
+        <li>If you're still having trouble, <a href="https://github.com/SKaplanOfficial/Raycast-PromptLab/issues/new/choose">create a new issue on GitHub</a> with a detailed description of the issue and any relevant screenshots or information. I'll do my best to help you out!
+        </li>
+      </ol>
+    </section>
+
+    <section id="project-contributing">
+      <h3>Contributing</h3>
+      <p>
+        Contributions are welcome! Please see the <a href="https://github.com/SKaplanOfficial/Raycast-PromptLab/blob/main/CONTRIBUTING.md">contributing guidelines</a> for more information.
+      </p>
+    </section>
+
+    <section id="project-resources">
+      <h3>Useful Resources</h3>
+      <table>
+        <thead>
+          <th>Resource Link</th>
+          <th>Category</th>
+          <td>Description</td>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api">Best practices for prompt engineering with OpenAI API</a></td>
+            <td>Prompt Engineering</td>
+            <td>Strategies for creating effective ChatGPT prompts, from OpenAI itself</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/brexhq/prompt-engineering#what-is-a-prompt">Brex's Prompt Engineering Guide</a></td>
+            <td>Prompt Engineering</td>
+            <td>A guide to prompt engineering, with examples and in-depth explanations</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/openai/openai-cookbook/blob/main/techniques_to_improve_reliability.md">Techniques to improve reliability</a></td>
+            <td>Prompt Engineering</td>
+            <td>Strategies for improving reliability of GPT responses</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="project-contact">
+      <h3>Contact</h3>
+      <p>
+        If you have any questions about PromptLab that are not addressed in the documentation, or if you just want to talk, feel free to email <a href="mailto:stephen.kaplan@maine.edu">stephen.kaplan@maine.edu</a>.
+      </p>
+    </section>
+  
+    <br /><br/>
+
+    <footer id="general-footer">
+      <center>
+      <i>Hosting for this site is provided by</i>
+      <p>
+        <a target=new href=http://sdf.org>
+        <img src=http://sdf.org/sdfbanner.png><br /><br />
+        <b>The SDF Public Access UNIX System</b>
+        </a>
+      </p>
+      </center>
+    </footer>
+  </body>
+</html>

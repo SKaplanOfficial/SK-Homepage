@@ -1,0 +1,169 @@
+<html>
+  <head>
+    <title>Stephen's Space | Clickable Detail</title>
+    <meta name=keywords content="SDF, Super Dimension Fortress, Raycast, Applescript, library, utility, resources, info, help, guide, notes, books, applescript, programming, python, unix, mac, apple, technology">
+  </head>
+  <body>
+    <header id="general-header">
+      <h1>Stephen's Space</h1>
+    </header>
+
+    <nav id="project-nav">
+      <a href="../../index.html">Root</a><br />
+      <a href="../../blog/index.html">Blog</a><br />
+      <a href="../../stephen-kaplan-resume_2023-aug.pdf">Resume</a><br />
+      <a href="../../projects/index.html">Projects</a><br />
+      <a href="../../links.html">Links</a>
+    </nav>
+    <br />
+    <header id="project-header">
+      <h2>Clickable Detail</h2>
+    </header>
+
+    <section id="project-introduction">
+      <h3>Introduction</h3>
+      <p>
+        A customized Detail component for Raycast that enables interaction via mouse clicks.
+      </p>
+
+      <img src="./assets/example.png" alt="Example of the Clickable Detail component in action" width=500 />
+
+      <br /><br />
+      
+      <a href="https://github.com/SKaplanOfficial/Clickable-Detail">GitHub Repository</a> | <a href="https://www.npmjs.com/package/clickable-detail">NPM Package</a> | <a href="https://www.paypal.com/donate/?hosted_button_id=2XFX5UXXR8M6J">Support Development</a>
+    </section>
+
+    <section id="project-installation">
+      <h3>Installation</h3>
+      <p><code>npm install clickable-detail</code></p>
+      <p>
+        Upon install, the package will automatically add two .scpt scripts to your extension's assets folder, i.e.:
+      </p>
+      <ul>
+        <li><a href="https://github.com/SKaplanOfficial/Clickable-Detail/blob/main/bin/DetectMouseInput.scpt">DetectMouseClicks</a> - Used to detect mouse clicks on the Raycast window.</li>
+        <li><a href="https://github.com/SKaplanOfficial/Clickable-Detail/blob/main/bin/HTML2b64.scpt">HTML2b64</a> - Used to convert HTML and URLs to base64-encoded PNG strings.</li>
+      </ul>
+      <p>
+        These scripts are necessary for the package to work, but you can modify them if you wish (e.g. if you want to customize the SVG that is used to render the clickable content). Use Script Editor on your Mac to view/edit the source code.
+      </p>
+    </section>
+
+    <section id=""project-usage">
+      <h3>Usage</h3>
+      <p>
+        <code>
+          <pre>
+import {
+  ClickableDetail,
+  DynamicSVG,
+  HTML,
+  INPUT,
+  Image,
+  Polygon,
+  Toggle,
+  usePreloadedImages,
+  useToggleDelegate,
+} from "clickable-detail";
+import { runAppleScript } from "run-applescript";
+
+export default function Command() {
+  // Preload images so they are ready to be used when the SVG is rendered
+  const images = usePreloadedImages(["https://placeholder.pics/svg/200x100"]);
+
+  // Delegates are used to keep track of state
+  const toggleDelegate = useToggleDelegate(false);
+
+  return (
+    &lt;ClickableDetail isLoading={images.length != 1} waitUntilAllLoaded={true}&gt;
+      &lt;DynamicSVG&gt;
+        {/* High-level, stateful components provided (More to be added soon) */}
+        &lt;Toggle
+          x={0}
+          y={0}
+          delegate={toggleDelegate}
+          label="Option 1"
+          onClick={() => runAppleScript(`display dialog "You toggled Option 1"`)}
+        /&gt;
+
+        {/* Include external images */}
+        &lt;Image x={0} y={50} width={200} height={100} {...images[0]?.image.data} /&gt;
+
+        {/* Click handlers can access the (x, y) coordinate of the click */}
+        &lt;Polygon points="300,100 350,25 350,75 400,0" fill="red" onClick={(loc) => console.log(`Clicked at (${loc.x}, ${loc.y})`)}/&gt;
+
+        {/* Supports HTML using JSX syntax */}
+        &lt;HTML y={200}&gt;
+          &lt;head&gt;
+            {/* Supports applying styles to HTML elements */}
+            &lt;style type="text/css"&gt;
+              {`
+                #paragraph1 {
+                  color: red;
+                }
+              `}
+            &lt;/style&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+            {/* Use React's built-in HTML components */}
+            &lt;p id="paragraph1"&gt;Can render arbitrary HTML content&lt;/p&gt;
+
+            &lt;form&gt;
+              {/* For additional functionality, use package-provided components -- just uppercase the normal tag and add, e.g., a click handler */}
+              &lt;INPUT type="submit" value="Submit" onClick={() => console.log("Submitted!")} x={10} y={215} width={55} height={25} /&gt;
+            &lt;/form&gt;
+          &lt;/body&gt;
+        &lt;/HTML&gt;
+      &lt;/DynamicSVG&gt;
+    &lt;/ClickableDetail&gt;
+  );
+}
+          </pre>
+        </code>
+      </p>
+
+      <p>
+        The <code>ClickableDetail</code> component works similarly to the built-in <code>Detail</code> component, but with a few key differences:
+        <ul>
+          <li>You do not provide a <code>markdown</code> prop — it will be automatically generated from <code>ClickableDetail</code>'s children.</li>
+          <li>As of now, the <code>metadata</code> prop is not supported, but will be in the future.</li>
+        </ul>
+      </p>
+    </section>
+
+    <section id="project-how-it-works">
+      <h3>How does it work?</h3>
+      <p>There two two main aspects to this package:</p>
+      <ol>
+        <li>Rendering clickable content</li>
+        <li>Listening for mouse clicks</li>
+      </ol>
+      <p>
+        For the first part, the <code>ClickableDetail</code> component uses a dynamically generated SVG to display content beyond what Detail normally supports. The SVG can be sourced from anywhere, but the provided <a href="https://github.com/SKaplanOfficial/Clickable-Detail/blob/main/lib/DynamicSVG.tsx">DynamicSVG</a>, built specifically for this package, is highly recommended. It supports not just creating SVGs using JSX syntax, but also embedding HTML content, external URLs, and click handlers for SVG elements.
+      </p>
+      <p>
+        To enable mouse clicks, the <code>ClickableDetail</code> component uses a JXA child process to monitor mouse clicks on the Raycast window. When a click is detected, <code>ClickableDetail</code> will determine if the click was on an SVG element that has a click handler. If so, the click handler will be called.
+      </p>
+    </section>
+
+    <section id="project-contact">
+      <h3>Contact</h3>
+      <p>
+        If you have any questions about Clickable Detail that are not addressed in the documentation, or if you just want to talk, feel free to email <a href="mailto:stephen.kaplan@maine.edu">stephen.kaplan@maine.edu</a>.
+      </p>
+    </section>
+  
+    <br /><br/>
+
+    <footer id="general-footer">
+      <center>
+      <i>Hosting for this site is provided by</i>
+      <p>
+        <a target=new href=http://sdf.org>
+        <img src=http://sdf.org/sdfbanner.png><br /><br />
+        <b>The SDF Public Access UNIX System</b>
+        </a>
+      </p>
+      </center>
+    </footer>
+  </body>
+</html>

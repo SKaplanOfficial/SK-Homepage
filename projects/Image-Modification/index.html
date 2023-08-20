@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <title>Stephen's Space | Image Modification</title>
+    <meta name=keywords content="SDF, Super Dimension Fortress, Raycast, Applescript, library, utility, resources, info, help, guide, notes, books, applescript, programming, python, unix, mac, apple, technology">
+  </head>
+  <body>
+    <header id="general-header">
+      <h1>Stephen's Space</h1>
+    </header>
+
+    <nav id="project-nav">
+      <a href="../../index.html">Root</a><br />
+      <a href="../../blog/index.html">Blog</a><br />
+      <a href="../../stephen-kaplan-resume_2023-aug.pdf">Resume</a><br />
+      <a href="../../projects/index.html">Projects</a><br />
+      <a href="../../links.html">Links</a>
+    </nav>
+    <br />
+    <header id="project-header">
+      <h2>Image Modification</h2>
+    </header>
+
+    <section id="project-introduction">
+      <h3>Introduction</h3>
+      <p>
+        Apply filters and transformations to various image formats, and convert between them. Create new images by specifying their dimensions, colors, and patterns. Operate on selected files or on images in the clipboard.
+      </p>
+
+      <p>
+        Filter thumbnail image credit: <a href="https://unsplash.com/photos/UBA_W3_LsOk">https://unsplash.com/photos/UBA_W3_LsOk</a>
+      </p>
+    </section>
+
+    <section id="project-feature-overview">
+      <h3>Feature Overview</h3>
+      <ul>
+        <li>Convert between many different image formats, including WebP and SVG
+          <ul>
+            <li>WebP conversion supported by <a href="https://developers.google.com/speed/webp/docs/precompiled">cwebp and dwebp</a></li>
+            <li>SVG conversion supported by <a href="https://potrace.sourceforge.net/">Potrace</a></li>
+          </ul>
+        </li>
+        <li>Rotate, flip, scale, resize, and pad images by applying SIPS commands</li>
+        <li>Apply filters and distortions such as Bokeh Blur, Noir, X-Ray, and more</li>
+        <li>Rotate, flip, and apply filters to the pages of PDFs</li>
+        <li>Optimize images using JPEG compression, <a href="https://github.com/svg/svgo">svgo</a>, and other strategies</li>
+        <li>Perform realtime image manipulation on images in the clipboard</li>
+      </ul>
+    </section>
+
+    <section id="project-commands">
+      <h3>Commands</h3>
+      <table border="1" cellpadding="5">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Apply Image Filter</td>
+            <td>Apply various filters to the provided images using Apple's CIFilters</td>
+          </tr>
+          <tr>
+            <td>Convert Images</td>
+            <td>Convert selected images from their current format to another.</td>
+          </tr>
+          <tr>
+            <td>Create New Image</td>
+            <td>Create a new image by selecting the dimensions, color, and pattern.</td>
+          </tr>
+          <tr>
+            <td>Flip Images Horizontally</td>
+            <td>Flip selected images horizontally.</td>
+          </tr>
+          <tr>
+            <td>Flip Images Vertically</td>
+            <td>Flip selected images vertically.</td>
+          </tr>
+          <tr>
+            <td>Optimize Images [Amount]</td>
+            <td>Decrease image file size by reducing complexity.</td>
+          </tr>
+          <tr>
+            <td>Pad Images [Amount] [Color]</td>
+            <td>Pad images by the specified number of pixels using the provided color (defaults to white).</td>
+          </tr>
+          <tr>
+            <td>Resize Images [Width] [Height]</td>
+            <td>Resize images proportionally by specifying either width or height. Resize images precisely by specifying both parameters.</td>
+          </tr>
+          <tr>
+            <td>Rotate Images [Degrees]</td>
+            <td>Rotate images clockwise by the specified amount.</td>
+          </tr>
+          <tr>
+            <td>Scale Images [Scale Factor]</td>
+            <td>Scale images proportionally by the specified factor.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="project-resources">
+      <h3>Resources</h3>
+      <table border="1" cellpadding="5">
+        <thead>
+          <td>Resource</td>
+          <td>Description</td>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://github.com/SKaplanOfficial/Raycast-Pins">Main Repository</a></td>
+            <td>The main repository for the Pins extension, containing the latest release and all documentation</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/SKaplanOfficial/Raycast-Pins/blob/main/assets/placeholders_guide.md">Placeholders Guide</a></td>
+            <td>A guide to the placeholders system used in Pins</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/SKaplanOfficial/Raycast-Pins/blob/main/DEVLOG.md">Development Log</a></td>
+            <td>Detailed changelog of all updates to Pins</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="project-contact">
+      <h3>Contact</h3>
+      <p>
+        If you have any questions about Image Modification that are not addressed in the documentation, or if you just want to talk, feel free to email <a href="mailto:stephen.kaplan@maine.edu">stephen.kaplan@maine.edu</a>.
+      </p>
+    </section>
+  
+    <br /><br/>
+
+    <footer id="general-footer">
+      <center>
+      <i>Hosting for this site is provided by</i>
+      <p>
+        <a target=new href=http://sdf.org>
+        <img src=http://sdf.org/sdfbanner.png><br /><br />
+        <b>The SDF Public Access UNIX System</b>
+        </a>
+      </p>
+      </center>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,259 @@
+<html>
+  <head>
+    <title>Stephen's Space | PyXA</title>
+    <meta name=keywords content="SDF, Super Dimension Fortress, Raycast, Applescript, library, utility, resources, info, help, guide, notes, books, applescript, programming, python, unix, mac, apple, technology">
+  </head>
+  <body>
+    <header id="general-header">
+      <h1>Stephen's Space</h1>
+    </header>
+
+    <nav id="project-nav">
+      <a href="../../index.html">Root</a><br />
+      <a href="../../blog/index.html">Blog</a><br />
+      <a href="../../stephen-kaplan-resume_2023-aug.pdf">Resume</a><br />
+      <a href="../../projects/index.html">Projects</a><br />
+      <a href="../../links.html">Links</a>
+    </nav>
+    <br />
+    <header id="project-header">
+      <img src="./PyXALogoTransparent.png" alt="PyXA Logo" width=250 />
+    </header>
+
+    <section id="project-introduction">
+      <h3>Introduction</h3>
+      <p>
+        Python for Automation, or PyXA for short, is a wrapper around several macOS frameworks that enables AppleScript- and JXA-like control over macOS applications from within Python. PyXA's objects and methods are based on applications' scripting dictionaries and coupled with additional automation features supported by Apple's macOS APIs.
+      </p>
+
+      <p>PyXA was created with the goals of:
+        <ol>
+          <li>
+            Simplifying the way automation tasks can be accomplished via Python
+          </li>
+          <li>
+            Introducing new features to macOS application scripting by simplifying complex procedures into simple, declarative methods
+          </li>
+          <li>
+            Disambiguating the capabilities of application scripting on macOS by providing easy-to-follow documentation throughout the entire project
+          </li>
+        </ol>
+      </p>
+
+      <p>
+        PyXA fills a gap where currently available frameworks ultimately fall short: it aims to be easy to learn for users accustomed to Python (or users who must use Python). To that end, the package's documentation contains numerous examples of how to use just about every method, and additional examples are provided covering specific use cases. PyXA's code also serves as a source of examples for how to use <a href="https://pyobjc.readthedocs.io/en/latest/"></a>PyObjC</a> to interact with various macOS frameworks.
+      </p>
+
+      <p>
+        PyXA is not intended to replace AppleScript or even to cover 100% of AppleScript's capabilities. Instead, PyXA is meant to provide general convenience in accomplishing AppleScript and other automation tasks via Python, for the most commonly used applications. If you need a complete Apple Event bridge, or if you find that PyXA cannot handle your particular use case, consider using <a href="https://appscript.sourceforge.io/">appscript</a> or one of its derivatives. If you just need something that works in most circumstances, that has abundant examples for you to reference, and supports some additional automation features (such as opening Maps to a specific address), then PyXA might be a good fit for you.
+      </p>
+    </section>
+
+    <section id="project-feature-overview">
+      <h3>Feature Overview</h3>
+      <ul>
+        <li>Support for most AppleScript commands in built-in macOS applications and some third-party applications (in progress)</li>
+        <li>Scripting capabilities for several non-scriptable applications by using APIs, URI schemes, and other methods</li>
+        <li>Support for direct operations on non-scriptable applications (e.g. <code>PyXA.application("Maps").front_window.collapse()</code>)</li>
+        <li>Command Chaining similar to JXA (e.g. <code>PyXA.application("Reminders").lists()[0].reminders().title()</code>)</li>
+        <li>Properties of scriptable elements accessible via object attributes (e.g. <code>note.name</code>, <code>tab.URL</code>, or <code>track.artist</code>)</li>
+        <li>Support for UI scripting of non-scriptable applications</li>
+        <li>Fast enumeration of scriptable objects</li>
+        <li>Automatic translation of clipboard items to PyXA objects</li>
+        <li>Support for compiling and executing AppleScript scripts via NSAppleScript</li>
+        <li>Full access to and control over the system clipboard</li>
+        <li>Support for dialogs, alerts, file/color pickers, and notifications</li>
+        <li>Classes for speech and speech recognition</li>
+        <li>Ability to create custom menu bar items</li>
+      </ul>
+    </section>
+
+    <section id="project-examples">
+      <h3>Examples</h3>
+      <div id="project-example-1">
+        <h4>Example 1: Open a URL in Safari and print the loaded page</h4>
+        <p>PyXA can control Safari and interact with its content. In this example, we use PyXA to obtain a reference to the Safari application, open a specific URL, then bring up the print dialog for the loaded page. If we wanted, we could pass additional parameters to the print() method to skip the print dialog and immediately print the page without any user interaction.</p>
+
+        <code>
+          <pre>
+import PyXA
+from time import sleep
+safari = PyXA.Safari()
+safari.open("https://www.apple.com")
+sleep(1)
+safari.current_document.print()
+          </pre>
+        </code>
+      </div>
+
+      <div id="project-example-2">
+        <h4>Example 2: Print Music track info whenever the track changes</h4>
+        <p>PyXA can also be used to interact with the Music app. In this example, we use PyXA to get a reference to the Music app, begin playback of the next-up song, then repeatedly print out some information about the track whenever the current track changes. The information will be printed regardless of how the track changes, so you can test this script by running it and skipping to the next song.</p>
+
+        <code>
+          <pre>
+import PyXA
+from time import sleep
+music = PyXA.Application("Music")
+
+# Wait for Music.app to be ready to play
+music.activate()
+while not music.frontmost:
+  sleep(0.5)
+music.play()
+
+track_name = ""
+while True:
+  if music.current_track.name != track_name:
+      track_name = music.current_track.name
+      print(music.current_track.name)
+      print(music.current_track.album)
+      print(music.current_track.artist, "\n")
+          </pre>
+        </code>
+
+        <p>
+          When run, this script produces an output similar to the following:
+        </p>
+
+        <samp>
+          <pre>
+Die Hard
+Mr. Morale & The Big Steppers
+Kendrick Lamar, Blxst & Amanda Reifer 
+
+I Like You (A Happier Song) [feat. Doja Cat]
+Twelve Carat Toothache
+Post Malone 
+
+WAIT FOR U (feat. Drake & Tems)
+I NEVER LIKED YOU
+Future
+
+...
+          </pre>
+        </samp>
+      </div>
+
+      <div id="project-example-3">
+        <h4>Example 3: Create a new note with a list of all events and reminders for the day</h4>
+        <p>PyXA can also be used for more complex tasks. In this example, we use PyXA to get a summary of upcoming reminders and events for the day. We obtain references to the Notes, Calendars, and Reminders applications, then we iterate through our reminders and events, creating a new line of text to summarize each item due today. We apply some HTML formatting to the note to make it look nice, then we create a new note containing the summarized content.</p>
+
+        <code>
+          <pre>
+import PyXA
+from datetime import datetime, timedelta
+
+# Activate Reminders to speed up communication of Apple Events
+reminders = PyXA.Application("Reminders").activate()
+notes = PyXA.Application("Notes")
+calendar = PyXA.Application("Calendar")
+
+# Get names of incomplete Reminders using a bulk method
+names = reminders.reminders({ "completed": False }).name()
+
+# Create a string listing incomplete reminders
+note_text = "-- Reminders --"
+for name in names:
+    note_text += f"&lt;br /&gt;Reminder: {name}"
+
+# Get Calendar events starting within the next 2 days
+start = datetime.now()
+events = calendar.calendars().events().between("startDate", start, start + timedelta(days=2))
+
+# Get event summaries (titles), start dates, and end dates using bulk methods
+summaries = events.summary()
+start_dates = events.start_date()
+end_dates = events.end_date()
+
+# Append the list of event information to the note text
+note_text += "&lt;br/&gt;&lt;br /&gt;-- Events --"
+for index, summary in enumerate(summaries):
+    note_text += "&lt;br /&gt;Event: " + summary + ", from " + str(start_dates[index]) + " to " + str(end_dates[index])
+
+# Create and show the note
+note = notes.new_note(f"&lt;h1&gt;Agenda for {start.strftime('%Y-%m-%d')}&lt;/h1&gt;", note_text)
+note.show()
+          </pre>
+        </code>
+
+        <p>
+          When run, the above script creates a note in the Notes application similar to the following:
+        </p>
+
+          <img src="./Example3_Notes.png" alt="Example of a note created using the script in Example 3" width=500 />
+      </div>
+
+      <div id="project-example-4">
+        <h4>Copy your last sent file in iMessage to the clipboard</h4>
+        <p>Lastly, PyXA has several convenient features for working with lists, interacting with the clipboard, and more soon to come. The example below highlights the simplicity of filtering lists of scriptable objects and setting the content of the clipboard. The filter method of PyXA's :class:XABase.XAList class enables straightforward construction of predicates to efficiently filter lists by. The content property of the :class:XABase.XAClipboard class can be set to both literal values and PyXA objects, allowing for concise scripts like the one below.</p>
+
+        <code>
+          <pre>
+import PyXA
+app = PyXA.Application("Messages")
+last_file_transfer = app.file_transfers().filter("direction", "==", app.MessageDirection.OUTGOING)[-1]
+PyXA.XAClipboard().content = last_file_transfer
+          </pre>
+        </code>
+      </div>
+    </section>
+
+    <section id="project-installation">
+      <h3>Installation</h3>
+      <p>
+        To install the latest version of PyXA on macOS, use the following pip command: <br /><br />
+        <code>python -m pip install mac-pyxa</code>
+      </p>
+    </section>
+
+    <section id="project-documentation">
+      <h3>Documentation</h3>
+      <p>
+        The best way to learn about PyXA is to read the <a href="http://skaplanofficial.github.io/PyXA/">documentation</a>. From there, you can find tutorials, examples, in-depth class and method documentation, and additional resources.
+      </p>
+      <p>
+        For further help, consider joining the <a href="https://discord.gg/Crypg65dxK">PyXA Discord Server</a> and asking your questions there.
+      </p>
+    </section>
+
+    <section id="project-known-limitations">
+      <h3>Known Limitations</h3>
+      <ul>
+        <li>Currently, PyXA only supports macOS automation. There is a goal to expand support to other operating systems, but no concrete plan exists at this time.</li>
+        <li>Since PyXA uses hard-coded class and method definitions, instead of deriving them automatically from existing sdef files, support for third-party applications is limited to the applications that contributors deem relevant. This is a sacrifice made in order to have detailed, consistent documentation for all supported applications.</li>
+      </ul>
+      <p>
+        Limitations of specific applications and methods are noted in their respective reference documents.
+      </p>
+    </section>
+
+    <section id="project-contributing">
+      <h3>Contributing</h3>
+      <p>
+        Contributions are welcome, big or small. Please refer to the <a href="https://github.com/SKaplanOfficial/PyXA/blob/main/CONTRIBUTING.md">Contributing Guidelines</a> for any contributions larger than a spelling correction. For small fixes such as spelling corrections, no issue needs to be created; you can go right to making a pull request. Other small issues include general grammar fixes, short comment additions, and formatting (whitespace) changes.
+      </p>
+    </section>
+
+    <section id="project-contact">
+      <h3>Contact</h3>
+      <p>
+        If you have any questions about PyXA that are not addressed in the documentation, or if you just want to talk, feel free to email <a href="mailto:stephen.kaplan@maine.edu">stephen.kaplan@maine.edu</a>.
+      </p>
+    </section>
+  
+    <br /><br/>
+
+    <footer id="general-footer">
+      <center>
+      <i>Hosting for this site is provided by</i>
+      <p>
+        <a target=new href=http://sdf.org>
+        <img src=http://sdf.org/sdfbanner.png><br /><br />
+        <b>The SDF Public Access UNIX System</b>
+        </a>
+      </p>
+      </center>
+    </footer>
+  </body>
+</html>
